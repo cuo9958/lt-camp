@@ -2,7 +2,8 @@ const Koa = require("koa");
 const render = require("koa-art-template");
 const server = require("koa-static");
 const KoaBody = require("koa-body");
-const Logger = require("./Logger");
+const schedule = require('node-schedule');
+const Logger = require("./logger");
 const configs = require("./configs");
 const utils = require("./utils");
 
@@ -87,4 +88,17 @@ process.on('exit', (code) => {
  */
 process.on('uncaughtException', (code) => {
     Logger.info("app已停止:" + code)
+});
+
+//执行定时器
+const schedules = utils.getFileList(configs.root + "/schedules");
+schedules.forEach(item => {
+    try {
+        const schedule_item = require(configs.root + "/schedules/" + item);
+        if (schedule_item) {
+            schedule.scheduleJob(schedule_item.rule, schedule_item.callback);
+        }
+    } catch (error) {
+        Logger.info(error.message);
+    }
 });
