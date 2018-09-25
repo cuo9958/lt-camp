@@ -5,7 +5,7 @@ module.exports = function (ctx, next) {
     const userAgent = ctx.headers["user-agent"];
     ctx.brower = {
         wx: /MicroMessenger/.test(userAgent),
-        url: ctx.url.indexOf("#app") > 0,
+        app: ctx.url.indexOf("#app") > 0,
     }
     next();
 }

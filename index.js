@@ -41,16 +41,22 @@ middleware_list.forEach(item => {
 });
 
 //添加路由
-let controller_list = utils.getFileList(configs.root + "/controller");
+const controller_list = utils.getFileList(configs.root + "/controller");
 controller_list.forEach(item => {
     try {
-        let controller_item = require(configs.root + "/controller/" + item);
+        const controller_item = require(configs.root + "/controller/" + item);
         if (controller_item) {
             app.use(controller_item.routes()).use(controller_item.allowedMethods());
         }
     } catch (error) {
         Logger.info(error.message);
     }
+});
+/**
+ * 错误处理页
+ */
+app.use(async function (ctx) {
+    await ctx.render("err");
 });
 /**
  * koa错误
