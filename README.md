@@ -7,3 +7,4 @@
 3. koa-router
 4. axios
 5. koa-body
+6. koa-static

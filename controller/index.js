@@ -2,9 +2,8 @@ const Router = require("koa-router");
 
 const router = new Router();
 
-router.get('/', (ctx, next) => {
-    console.log("index")
-    ctx.body = "index"
+router.get('/', async (ctx, next) => {
+    await ctx.render("index");
 });
 
 module.exports = router;

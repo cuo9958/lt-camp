@@ -11,5 +11,8 @@ module.exports = {
      * 设置端口
      */
     port: 18095,
-
+    /**
+     * 调试模式
+     */
+    debug: true,
 }
