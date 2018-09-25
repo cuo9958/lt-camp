@@ -69,7 +69,8 @@ app.on('error', (err, ctx) => {
  * 监听
  */
 app.listen(port, function () {
-    Logger.info("camp已启动:" + port)
+    Logger.info("camp已启动:" + port);
+    require("./app");
 });
 /**
  * 快捷键停止

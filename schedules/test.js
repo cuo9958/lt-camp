@@ -2,7 +2,7 @@
  * 定时器测试任务
  */
 module.exports = {
-    rule: "*/1 * * * * *",
+    rule: "*/5 * * * * *",
     callback: function () {
         console.log("测试")
     }
