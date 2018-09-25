@@ -8,3 +8,7 @@
 4. axios
 5. koa-body
 6. koa-static
+
+## 目录结构
+
+- config，配置目录
