@@ -32,9 +32,9 @@ app.use(KoaBody(configs.body));
 let middleware_list = utils.getFileList(configs.root + "/middleware");
 middleware_list.forEach(item => {
     try {
-        let middleware_list = require(configs.root + "/middleware/" + item);
-        if (middleware_list) {
-            app.use(middleware_list)
+        let middleware_item = require(configs.root + "/middleware/" + item);
+        if (middleware_item) {
+            app.use(middleware_item)
         }
     } catch (error) {
         Logger.info(error.message);
