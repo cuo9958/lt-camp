@@ -29,30 +29,11 @@ app.use(KoaBody(configs.body));
 /**
  * 添加全局中间件
  */
-let middleware_list = utils.getFileList(configs.root + "/middleware");
-middleware_list.forEach(item => {
-    try {
-        let middleware_item = require(configs.root + "/middleware/" + item);
-        if (middleware_item) {
-            app.use(middleware_item)
-        }
-    } catch (error) {
-        Logger.info(error.message);
-    }
-});
+utils.loadModel(configs.root + "/middleware", item => app.use(item));
 
 //添加路由
-const controller_list = utils.getFileList(configs.root + "/controller");
-controller_list.forEach(item => {
-    try {
-        const controller_item = require(configs.root + "/controller/" + item);
-        if (controller_item) {
-            app.use(controller_item.routes()).use(controller_item.allowedMethods());
-        }
-    } catch (error) {
-        Logger.info(error.message);
-    }
-});
+utils.loadModel(configs.root + "/controller", item => app.use(item.routes()).use(item.allowedMethods()))
+
 /**
  * 错误处理页
  */
