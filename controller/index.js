@@ -1,6 +1,5 @@
-const Router = require("koa-router");
 
-const router = new Router();
+const router = require("../router")();
 
 router.get('/', async (ctx, next) => {
     await ctx.render("index");
