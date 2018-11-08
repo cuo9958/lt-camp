@@ -29,10 +29,10 @@ app.use(KoaBody(configs.body));
 /**
  * 添加全局中间件
  */
-utils.loadModel(configs.root + "/middleware", item => app.use(item));
+utils.loadModule(configs.root + "/middleware", item => app.use(item));
 
 //添加路由
-utils.loadModel(configs.root + "/controller", item => app.use(item.routes()).use(item.allowedMethods()))
+utils.loadModule(configs.root + "/controller", item => app.use(item.routes()).use(item.allowedMethods()))
 
 /**
  * 错误处理页
